@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": ">=5.4",
-        "michalkvasnicak/oauth2-server": "dev-develop",
+        "michalkvasnicak/oauth2-server": "~1.0",
         "symfony/framework-bundle": "~2.2",
         "symfony/security-bundle": "~2.2"
     },
