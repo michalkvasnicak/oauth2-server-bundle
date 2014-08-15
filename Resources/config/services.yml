@@ -1,0 +1,160 @@
+parameters:
+
+  #oauth2_server.storage.access_token:
+  #oauth2_server.storage.authorization_code:
+  #oauth2_server.storage.client:
+  #oauth2_server.storage.refresh_token:
+  #oauth2_server.storage.scope:
+  #oauth2_server.storage.user:
+
+services:
+
+  # AUTHENTICATORS
+  oauth2_server.authenticator.client:
+    class: OAuth2\Security\ClientAuthenticator
+    calls:
+      - [accept, ['@oauth2_server.client_authentication_method.http_basic']]
+      - [accept, ['@oauth2_server.client_authentication_method.request_body']]
+
+  oauth2_server.authenticator.user:
+    class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Security\UserAuthenticator
+    arguments:
+      - @security.encoder_factory
+      - @auth2_server.user_provider # user provider is created using compiler pass
+
+
+  # AUTHENTICATION SERVICES
+  oauth2_server.authentication.listener:
+    class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Security\Firewall\OAuth2Listener
+    arguments:
+      - @oauth2_server.resolver.token_type
+      - @oauth2_server.service.request_transformer
+      - @security.context
+      - @security.authentication.manager
+      - @oauth2_server.authentication.entry_point
+
+
+  oauth2_server.authentication.provider:
+    class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Security\Authentication\Provider\OAuth2Provider
+    arguments:
+      - @oauth2_server.service.authenticator
+
+
+  oauth2_server.authentication.entry_point:
+    class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Security\EntryPoint\OAuth2EntryPoint
+    arguments:
+      - @oauth2_server.token_type
+      - %oauth2_server.www_realm%
+
+
+  # CLIENT AUTHENTICATION METHODS
+  oauth2_server.client_auhentication_method.http_basic:
+    class: OAuth2\Security\ClientAuthenticationMethod\HttpBasic
+    arguments:
+      - @oauth2_server.storage.client
+
+  oauth2_server.client_authentication_method.request_body:
+    class: OAuth2\Security\ClientAuthenticationMethod\RequestBody
+    arguments:
+      - @oauth2_server.storage.client
+
+  # CONTROLLERS
+  oauth2_server.controller.token_controller:
+    class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Controller\TokenController
+    arguments:
+      - @oauth2_server.service.request_transformer
+      - @oauth2_server.issuer.access_token
+      - @oauth2_server.issuer.refresh_token
+      - @oauth2_server.token_type
+      - %oauth2_server.refresh_tokens.generate%
+
+
+  # GRANT TYPES (DEFAULT)
+  oauth2_server.grant_type.authorization_code:
+    class: OAuth2\GrantType\AuthorizationCode
+    arguments:
+      - @oauth2_server.authenticator.client
+      - @oauth2_server.storage.client
+      - @oauth2_server.storage.authorization_code
+      - @oauth2_server.storage.access_token
+      - @oauth2_server.resolver.scope
+
+
+  oauth2_server.grant_type.client_credentials:
+    class: OAuth2\GrantType\ClientCredentials
+    arguments:
+      - @oauth2_server.authenticator.client
+      - @oauth2_server.storage.access_token
+      - @oauth2_server.resolver.scope_resolver
+
+  oauth2_server.grant_type.resource_owner_password_credentials:
+    class: OAuth2\GrantType\ResourceOwnerPasswordCredentials
+    arguments:
+      - @oauth2_server.authenicator.client
+      - @oauth2_server.authenticator.user
+      - @oauth2_server.storage.access_token
+      - @oauth2_server.resolver.scope
+
+  oauth2_server.grant_type.refresh_token:
+    class: OAuth2\GrantType\RefreshToken
+    arguments:
+      - @oauth2_server.authenticator.client
+      - @oauth2_server.storage.refresh_token
+      - @oauth2_server.storage.access_token
+      - @oauth2_server.resolver.scope
+
+  oauth2_server.grant_type.implicit:
+    class: OAuth2\GrantType\Implicit
+    arguments:
+      - @oauth2_server.storage.client
+      - @oauth2_server.storage.access_token
+      - @oauth2_server.resolver.scope
+      - @oauth2_server.token_type
+
+
+  # TOKEN ISSUERS
+  oauth2_server.issuer.access_token:
+    class: OAuth2\TokenIssuer\AccessTokenIssuer
+    arguments:
+      - @oauth2_server.resolver.grant_type
+
+  oauth2_server.issuer.refresh_token:
+    class: OAuth2\TokenIssuer\RefreshTokenIssuer
+    arguments:
+      - @oauth2_server.storage.refresh_token
+      - %oauth2_server.refresh_token_lifetime%
+
+
+  # RESOLVERS
+  oauth2_server.resolver.grant_type:
+    class. OAuth2\Resolver\GrantTypeResolver
+
+  oauth2_server.resolver.scope:
+    class: OAuth2\Resolver\ScopeResolver
+
+  oauth2_server.resolver.token_type:
+    class: OAuth2\Resolver\TokenTypeResolver
+    calls:
+      - [accept, ["@oauth2_server.token_type"]]
+
+
+  # SERVICES
+  oauth2_server.service.authenticator:
+    class: OAuth2\Security\Authenticator
+    arguments:
+      - @oauth2_server.resolver.token_type
+      - @oauth2_server.storage.access_token
+
+  oauth2_server.service.authorizator:
+    class: OAuth2\Security\Authorizator
+    arguments:
+      - @oauth2_server.resolver.grant_type
+
+  oauth2_server.service.request_transformer:
+    class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Transformer\RequestTransformer
+
+  # TOKEN TYPE
+  oauth2_server.token_type:
+  #  class:
+  #
+  # is created using token type compiler pass

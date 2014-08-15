@@ -1,0 +1,33 @@
+{
+    "name": "michalkvasnicak/oauth2-server-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony OAuth 2.0 server bundle",
+    "homepage": "http://github.com/michalkvasnicak/oauth2-bundle",
+    "keywords": ["symfony", "oauth", "security", "authorization", "authentication"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michal Kvasnicak",
+            "email": "michal.kvasnicak@mink.sk",
+            "homepage": "http://kvasnicak.info"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "michalkvasnicak/oauth2-server": "dev-develop",
+        "symfony/framework-bundle": "~2.2",
+        "symfony/security-bundle": "~2.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "satooshi/php-coveralls": "~0.6",
+        "phpunit/php-code-coverage": "~2.0",
+        "mockery/mockery": "~0.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "MichalKvasnicak\\Bundle\\OAuth2ServerBundle\\": ""
+        }
+    },
+    "minimum-stability": "dev"
+}

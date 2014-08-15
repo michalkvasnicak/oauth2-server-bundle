@@ -1,0 +1,3 @@
+oauth2_server_token_endpoint:
+    path:     /auth/token
+    defaults: { _controller: oauth2_server.controller.token_controller:tokenAction }
