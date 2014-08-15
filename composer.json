@@ -2,7 +2,7 @@
     "name": "michalkvasnicak/oauth2-server-bundle",
     "type": "symfony-bundle",
     "description": "Symfony OAuth 2.0 server bundle",
-    "homepage": "http://github.com/michalkvasnicak/oauth2-bundle",
+    "homepage": "http://github.com/michalkvasnicak/oauth2-server-bundle",
     "keywords": ["symfony", "oauth", "security", "authorization", "authentication"],
     "license": "MIT",
     "authors": [
