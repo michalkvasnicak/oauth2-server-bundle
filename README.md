@@ -2,7 +2,8 @@
 
 OAuth 2.0 server bundle for Symfony 2 framework
 
-[![Build Status](https://secure.travis-ci.org/michalkvasnicak/oauth2-server-bundle.png)](http://travis-ci.org/michalkvasnicak/oauth2-server-bundle)
+* Develop: [![Build Status](https://secure.travis-ci.org/michalkvasnicak/oauth2-server-bundle.png?branch=develop)](http://travis-ci.org/michalkvasnicak/oauth2-server-bundle)
+* Master: [![Build Status](https://secure.travis-ci.org/michalkvasnicak/oauth2-server-bundle.png?branch=master)](http://travis-ci.org/michalkvasnicak/oauth2-server-bundle)
 
 ## Requirements
 
