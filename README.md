@@ -1,11 +1,25 @@
-# OAuth2 Server Bundle
+# OAuth 2.0 Server Bundle
 
-OAuth 2.0 server bundle for Symfony 2
+OAuth 2.0 server bundle for Symfony 2 framework
 
 [![Build Status](https://secure.travis-ci.org/michalkvasnicak/oauth2-server-bundle.png)](http://travis-ci.org/michalkvasnicak/oauth2-server-bundle)
 
+## Requirements
+
+* PHP >= 5.4
+* HHVM
 
 ## Installation
+
+Using composer
+
+```json
+{
+    "require": {
+        "michalkvasnicak/oauth2-server-bundle": "*"
+    }
+}
+```
 
 ## Configuration
 
