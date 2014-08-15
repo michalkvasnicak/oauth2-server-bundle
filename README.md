@@ -4,6 +4,9 @@ OAuth 2.0 server bundle for Symfony 2 framework
 
 * Develop: [![Build Status](https://secure.travis-ci.org/michalkvasnicak/oauth2-server-bundle.png?branch=develop)](http://travis-ci.org/michalkvasnicak/oauth2-server-bundle)
 * Master: [![Build Status](https://secure.travis-ci.org/michalkvasnicak/oauth2-server-bundle.png?branch=master)](http://travis-ci.org/michalkvasnicak/oauth2-server-bundle)
+* [![Coverage Status](https://img.shields.io/coveralls/michalkvasnicak/oauth2-server-bundle.svg)](https://coveralls.io/r/michalkvasnicak/oauth2-server-bundle?branch=develop)
+* [![Gittip](http://img.shields.io/gittip/michalkvasnicak.svg)](https://www.gittip.com/michalkvasnicak)
+* [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=kvasnicak.michal&url=https://github.com/michalkvasnicak/oauth2-server-bundle&title=michalkvasnicak/oauth2-server-bundle&language=php&tags=github&category=software)
 
 ## Requirements
 
