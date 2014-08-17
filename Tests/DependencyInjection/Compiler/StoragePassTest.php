@@ -28,7 +28,7 @@ class StoragePassTest extends BaseTestCase
         $this->assertException(
             function() use ($compiler, $container) {
                 $container->setParameter(
-                    'oauth2_server.storage', [
+                    'o_auth2_server.storage', [
                         'unknown1' => true,
                         'unknown2' => false
                     ]
@@ -45,7 +45,7 @@ class StoragePassTest extends BaseTestCase
         $this->assertException(
             function() use ($compiler, $container) {
                 $container->setParameter(
-                    'oauth2_server.storage', [
+                    'o_auth2_server.storage', [
                         'authorization_code' => false
                     ]
                 );
@@ -54,14 +54,14 @@ class StoragePassTest extends BaseTestCase
             },
             'Symfony\\Component\\Config\\Definition\\Exception\\InvalidConfigurationException',
             null,
-            "oauth2_server.storage.authorization_code has to be string, boolean given."
+            "o_auth2_server.storage.authorization_code has to be string, boolean given."
         );
 
         // not existing service
         $this->assertException(
             function() use ($compiler, $container) {
                 $container->setParameter(
-                    'oauth2_server.storage', [
+                    'o_auth2_server.storage', [
                         'authorization_code' => 'test'
                     ]
                 );
@@ -79,7 +79,7 @@ class StoragePassTest extends BaseTestCase
                 $service = new Definition('stdClass');
 
                 $container->setParameter(
-                    'oauth2_server.storage', [
+                    'o_auth2_server.storage', [
                         'authorization_code' => 'test'
                     ]
                 );
@@ -103,11 +103,11 @@ class StoragePassTest extends BaseTestCase
             ->once();
 
         $container->setParameter(
-            'oauth2_server.storage', [
+            'o_auth2_server.storage', [
                 'authorization_code' => 'test'
             ]
         );
-        $container->setParameter('oauth2_server.authorization_codes', ['lifetime' => 60]);
+        $container->setParameter('o_auth2_server.authorization_codes', ['lifetime' => 60]);
 
         $container->setDefinition('test', $service);
 

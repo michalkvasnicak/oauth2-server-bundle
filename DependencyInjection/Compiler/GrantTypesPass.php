@@ -27,10 +27,10 @@ class GrantTypesPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $grantTypeResolver = $container->getDefinition('oauth2_server.resolver.grant_type');
+        $grantTypeResolver = $container->getDefinition('o_auth2_server.resolver.grant_type');
 
-        $grantTypes = $container->getParameter('oauth2_server.grant_types');
-        $taggedServices = $container->findTaggedServiceIds('oauth2_server.grant_type');
+        $grantTypes = $container->getParameter('o_auth2_server.grant_types');
+        $taggedServices = $container->findTaggedServiceIds('o_auth2_server.grant_type');
         $registeredGrantTypes = 0;
 
         $defaultGrantTypesPassess = [

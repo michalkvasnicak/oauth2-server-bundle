@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-class OAuth2Extension extends Extension
+class OAuth2ServerExtension extends Extension
 {
 
     /**
@@ -36,20 +36,20 @@ class OAuth2Extension extends Extension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
 
-        $container->setParameter('oauth2_server.access_tokens.lifetime', $config['access_tokens']['lifetime']);
-        $container->setParameter('oauth2_server.refresh_tokens.lifetime', $config['refresh_tokens']['lifetime']);
-        $container->setParameter('oauth2_server.refresh_tokens.generate', $config['refresh_tokens']['generate']);
-        $container->setParameter('oauth2_server.www_realm', $config['www_realm']);
-        $container->setParameter('oauth2_server.grant_types', $config['grant_types']);
+        $container->setParameter('o_auth2_server.access_tokens.lifetime', $config['access_tokens']['lifetime']);
+        $container->setParameter('o_auth2_server.refresh_tokens.lifetime', $config['refresh_tokens']['lifetime']);
+        $container->setParameter('o_auth2_server.refresh_tokens.generate', $config['refresh_tokens']['generate']);
+        $container->setParameter('o_auth2_server.www_realm', $config['www_realm']);
+        $container->setParameter('o_auth2_server.grant_types', $config['grant_types']);
 
         foreach ($config['classes'] as $key => $class) {
-            $container->setParameter("oauth2_server.classes.$key", $class);
+            $container->setParameter("o_auth2_server.classes.$key", $class);
         }
     }
 
 
     public function getAlias()
     {
-        return 'oauth2_server';
+        return 'o_auth2_server';
     }
 }

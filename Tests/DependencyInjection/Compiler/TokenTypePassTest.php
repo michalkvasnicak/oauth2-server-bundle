@@ -23,16 +23,16 @@ class TokenTypePassTest extends BaseTestCase
         $compiler = new TokenTypePass();
         $container = new ContainerBuilder();
 
-        $container->setDefinition('oauth2_server.token_type', new Definition());
+        $container->setDefinition('o_auth2_server.token_type', new Definition());
 
         // valid class
-        $container->setParameter('oauth2_server.classes.token_type', 'OAuth2\\TokenType\\Bearer');
+        $container->setParameter('o_auth2_server.classes.token_type', 'OAuth2\\TokenType\\Bearer');
         $compiler->process($container);
 
         // not existing class
         $this->assertException(
             function() use ($compiler, $container) {
-                $container->setParameter('oauth2_server.classes.token_type', 'PomPom');
+                $container->setParameter('o_auth2_server.classes.token_type', 'PomPom');
                 $compiler->process($container);
             },
             'Symfony\Component\Config\Definition\Exception\InvalidConfigurationException',
@@ -44,7 +44,7 @@ class TokenTypePassTest extends BaseTestCase
         // invalid class
         $this->assertException(
             function() use ($compiler, $container) {
-                $container->setParameter('oauth2_server.classes.token_type', 'StdClass');
+                $container->setParameter('o_auth2_server.classes.token_type', 'StdClass');
                 $compiler->process($container);
             },
             'Symfony\Component\Config\Definition\Exception\InvalidConfigurationException',

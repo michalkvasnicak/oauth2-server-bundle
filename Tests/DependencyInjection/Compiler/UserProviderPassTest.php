@@ -29,7 +29,7 @@ class UserProviderPassTest extends BaseTestCase
             ->shouldReceive('getClass')
             ->andReturn('Symfony\\Component\\Security\\Core\\User\\InMemoryUserProvider');
 
-        $container->setParameter('oauth2_server.user_provider', 'name_of_service');
+        $container->setParameter('o_auth2_server.user_provider', 'name_of_service');
         $container->setDefinition('name_of_service', $validServiceMock);
 
         $compiler->process($container);
@@ -37,7 +37,7 @@ class UserProviderPassTest extends BaseTestCase
         // not existing service
         $this->assertException(
             function() use ($container, $compiler) {
-                $container->setParameter('oauth2_server.user_provider', 'pompom');
+                $container->setParameter('o_auth2_server.user_provider', 'pompom');
 
                 $compiler->process($container);
             },
@@ -54,7 +54,7 @@ class UserProviderPassTest extends BaseTestCase
                     ->shouldReceive('getClass')
                     ->andReturn('stdClass');
 
-                $container->setParameter('oauth2_server.user_provider', 'invalid');
+                $container->setParameter('o_auth2_server.user_provider', 'invalid');
                 $container->setDefinition('invalid', $serviceMock);
 
                 $compiler->process($container);

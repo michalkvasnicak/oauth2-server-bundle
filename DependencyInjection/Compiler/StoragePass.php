@@ -27,7 +27,7 @@ class StoragePass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $storage = $container->getParameter('oauth2_server.storage');
+        $storage = $container->getParameter('o_auth2_server.storage');
 
         $validator = [
             'authorization_code' => 'OAuth2\\Storage\\IAuthorizationCodeStorage',
@@ -53,7 +53,7 @@ class StoragePass implements CompilerPassInterface
                 $type = gettype($value);
 
                 throw new InvalidConfigurationException(
-                    "oauth2_server.storage.$key has to be string, $type given."
+                    "o_auth2_server.storage.$key has to be string, $type given."
                 );
             }
 
@@ -78,12 +78,12 @@ class StoragePass implements CompilerPassInterface
                 $service->addMethodCall(
                     'setLifetime',
                     [
-                        $container->getParameter("oauth2_server.{$key}s")['lifetime']
+                        $container->getParameter("o_auth2_server.{$key}s")['lifetime']
                     ]
                 );
             }
 
-            $container->setAlias("oauth2_server.storage.$key", new Alias($value));
+            $container->setAlias("o_auth2_server.storage.$key", new Alias($value));
         }
     }
 }

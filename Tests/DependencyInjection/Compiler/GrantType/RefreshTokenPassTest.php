@@ -32,7 +32,7 @@ class RefreshTokenPassTest extends BaseTestCase
         );
 
         // valid
-        $container->setAlias('oauth2_server.storage.refresh_token', new Alias('test'));
+        $container->setAlias('o_auth2_server.storage.refresh_token', new Alias('test'));
 
         $compiler->process($container);
     }

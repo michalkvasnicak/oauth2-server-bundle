@@ -26,7 +26,7 @@ class TokenTypePass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $tokenClass = $container->getParameter('oauth2_server.classes.token_type');
+        $tokenClass = $container->getParameter('o_auth2_server.classes.token_type');
 
         if (!class_exists($tokenClass)) {
             throw new InvalidConfigurationException(
@@ -40,7 +40,7 @@ class TokenTypePass implements CompilerPassInterface
             );
         }
 
-        $serviceDefinition = $container->getDefinition('oauth2_server.token_type');
+        $serviceDefinition = $container->getDefinition('o_auth2_server.token_type');
         $serviceDefinition->setClass($tokenClass);
     }
 }

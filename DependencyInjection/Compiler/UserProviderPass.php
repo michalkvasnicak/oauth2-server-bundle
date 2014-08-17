@@ -26,7 +26,7 @@ class UserProviderPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $serviceName = $container->getParameter('oauth2_server.user_provider');
+        $serviceName = $container->getParameter('o_auth2_server.user_provider');
 
         if (!$container->hasDefinition($serviceName)) {
             throw new InvalidConfigurationException("Service '$serviceName' does not exist.");

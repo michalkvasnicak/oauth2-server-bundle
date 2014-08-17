@@ -26,7 +26,7 @@ class RefreshTokenPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         // throws exception if storage does not exist
-        $container->getAlias('oauth2_server.storage.refresh_token');
+        $container->getAlias('o_auth2_server.storage.refresh_token');
     }
 }
  

@@ -26,7 +26,7 @@ class AuthorizationCodePass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         // throws exception if storage does not exist
-        $container->getAlias('oauth2_server.storage.authorization_code');
+        $container->getAlias('o_auth2_server.storage.authorization_code');
     }
 }
  

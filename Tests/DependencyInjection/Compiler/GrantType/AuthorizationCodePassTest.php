@@ -32,7 +32,7 @@ class AuthorizationCodePassTest extends BaseTestCase
         );
 
         // valid
-        $container->setAlias('oauth2_server.storage.authorization_code', new Alias('test'));
+        $container->setAlias('o_auth2_server.storage.authorization_code', new Alias('test'));
 
         $compiler->process($container);
     }

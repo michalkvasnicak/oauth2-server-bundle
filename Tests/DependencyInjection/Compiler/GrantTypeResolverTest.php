@@ -26,12 +26,12 @@ class GrantTypeResolverTest extends BaseTestCase
         $compiler = new GrantTypesPass();
         $container = new ContainerBuilder();
 
-        $container->setDefinition('oauth2_server.resolver.grant_type', $grantTypeResolverDefinition);
+        $container->setDefinition('o_auth2_server.resolver.grant_type', $grantTypeResolverDefinition);
 
         // invalid no grant types
         $this->assertException(
             function() use ($container, $compiler) {
-                $container->setParameter('oauth2_server.grant_types', []);
+                $container->setParameter('o_auth2_server.grant_types', []);
                 $compiler->process($container);
             },
             'Symfony\\Component\\Config\\Definition\\Exception\\InvalidConfigurationException',
@@ -41,7 +41,7 @@ class GrantTypeResolverTest extends BaseTestCase
 
 
         $grantTypeDefinition = new Definition('OAuth2\\GrantType\\ResourceOwnerPasswordCredentials');
-        $grantTypeDefinition->addTag('oauth2_server.grant_type');
+        $grantTypeDefinition->addTag('o_auth2_server.grant_type');
 
         $container->setDefinition('tagged_grant_type', $grantTypeDefinition);
 
@@ -51,7 +51,7 @@ class GrantTypeResolverTest extends BaseTestCase
         $this->assertException(
             function() use ($container, $compiler) {
                 $grantTypeDefinition = new Definition('stdClass');
-                $grantTypeDefinition->addTag('oauth2_server.grant_type');
+                $grantTypeDefinition->addTag('o_auth2_server.grant_type');
 
                 $container->setDefinition('tagged_grant_type', $grantTypeDefinition);
 
