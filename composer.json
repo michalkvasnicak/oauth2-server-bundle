@@ -24,6 +24,9 @@
         "phpunit/php-code-coverage": "~2.0",
         "mockery/mockery": "~0.9"
     },
+    "suggest": {
+        "michalkvasnicak/oauth2-server-mongodb-bundle": "Predefined MongoDB model layer for authentication/authorization and user management."
+    },
     "autoload": {
         "psr-4": {
             "MichalKvasnicak\\Bundle\\OAuth2ServerBundle\\": ""

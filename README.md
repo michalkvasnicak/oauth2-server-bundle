@@ -51,7 +51,7 @@ oauth2_server.classes.token_type: 'OAuth2\TokenType\Bearer'
 
 ### Storage
 
-You can use michalkvasnicak/OAuth2MongoDBBundle or create own model. If you want to create own model you have to define **user provider** and services needed for grant types you are going to use.
+You can use [michalkvasnicak/OAuth2ServerMongoDBBundle bundle](https://github.com/michalkvasnicak/oauth2-server-mongodb-bundle) or create own model. If you want to create own model you have to define **user provider** and services needed for grant types you are going to use.
 
 ```yaml
 # this is needed for authentication
