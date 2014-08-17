@@ -90,7 +90,7 @@ services:
   o_auth2_server.grant_type.resource_owner_password_credentials:
     class: OAuth2\GrantType\ResourceOwnerPasswordCredentials
     arguments:
-      - @o_auth2_server.authenicator.client
+      - @o_auth2_server.authenticator.client
       - @o_auth2_server.authenticator.user
       - @o_auth2_server.storage.access_token
       - @o_auth2_server.resolver.scope
