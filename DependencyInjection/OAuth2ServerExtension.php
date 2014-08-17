@@ -37,6 +37,7 @@ class OAuth2ServerExtension extends Extension
         $loader->load('services.yml');
 
         $container->setParameter('o_auth2_server.access_tokens.lifetime', $config['access_tokens']['lifetime']);
+        $container->setParameter('o_auth2_server.authorization_codes.lifetime', $config['authorization_codes']['lifetime']);
         $container->setParameter('o_auth2_server.refresh_tokens.lifetime', $config['refresh_tokens']['lifetime']);
         $container->setParameter('o_auth2_server.refresh_tokens.generate', $config['refresh_tokens']['generate']);
         $container->setParameter('o_auth2_server.www_realm', $config['www_realm']);
