@@ -20,7 +20,7 @@ services:
     class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Security\UserAuthenticator
     arguments:
       - @security.encoder_factory
-      - @auth2_server.user_provider # user provider is created using compiler pass
+      - @o_auth2_server.user_provider # user provider is created using compiler pass
 
 
   # AUTHENTICATION SERVICES
