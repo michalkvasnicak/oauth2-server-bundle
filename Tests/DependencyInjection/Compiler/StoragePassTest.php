@@ -107,7 +107,7 @@ class StoragePassTest extends BaseTestCase
                 'authorization_code' => 'test'
             ]
         );
-        $container->setParameter('o_auth2_server.authorization_codes', ['lifetime' => 60]);
+        $container->setParameter('o_auth2_server.authorization_codes.lifetime', 60);
 
         $container->setDefinition('test', $service);
 

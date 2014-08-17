@@ -78,7 +78,7 @@ class StoragePass implements CompilerPassInterface
                 $service->addMethodCall(
                     'setLifetime',
                     [
-                        $container->getParameter("o_auth2_server.{$key}s")['lifetime']
+                        $container->getParameter("o_auth2_server.{$key}s.lifetime")
                     ]
                 );
             }
