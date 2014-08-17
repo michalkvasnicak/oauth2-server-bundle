@@ -146,10 +146,12 @@ class Configuration implements ConfigurationInterface
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()
+                ->scalarNode('authorization_code')->end()
                 ->scalarNode('client')
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()
+                ->scalarNode('refresh_token')->end()
             ->end();
 
         return $treeBuilder;
