@@ -48,7 +48,7 @@ services:
 
 
   # CLIENT AUTHENTICATION METHODS
-  o_auth2_server.client_auhentication_method.http_basic:
+  o_auth2_server.client_authentication_method.http_basic:
     class: OAuth2\Security\ClientAuthenticationMethod\HttpBasic
     arguments:
       - @o_auth2_server.storage.client
