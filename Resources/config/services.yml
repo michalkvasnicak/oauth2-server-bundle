@@ -127,7 +127,7 @@ services:
 
   # RESOLVERS
   o_auth2_server.resolver.grant_type:
-    class. OAuth2\Resolver\GrantTypeResolver
+    class: OAuth2\Resolver\GrantTypeResolver
 
   o_auth2_server.resolver.scope:
     class: OAuth2\Resolver\ScopeResolver
