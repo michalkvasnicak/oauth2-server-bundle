@@ -122,7 +122,7 @@ services:
     class: OAuth2\TokenIssuer\RefreshTokenIssuer
     arguments:
       - @o_auth2_server.storage.refresh_token
-      - %o_auth2_server.refresh_token_lifetime%
+      - %o_auth2_server.refresh_tokens.lifetime%
 
 
   # RESOLVERS
