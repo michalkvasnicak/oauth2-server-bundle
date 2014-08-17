@@ -8,6 +8,7 @@ use MichalKvasnicak\Bundle\OAuth2ServerBundle\DependencyInjection\Compiler\Token
 use MichalKvasnicak\Bundle\OAuth2ServerBundle\DependencyInjection\Compiler\UserProviderPass;
 use MichalKvasnicak\Bundle\OAuth2ServerBundle\DependencyInjection\Security\Factory\OAuth2Factory;
 use Symfony\Bundle\SecurityBundle\DependencyInjection\SecurityExtension;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -31,9 +32,11 @@ class OAuth2ServerBundle extends Bundle
         $extension->addSecurityListenerFactory(new OAuth2Factory());
 
         $container->addCompilerPass(new GrantTypesPass());
-        $container->addCompilerPass(new StoragePass());
-        $container->addCompilerPass(new UserProviderPass());
         $container->addCompilerPass(new TokenTypePass());
+
+        // those two are moved to later phase because in before optimization there aren't resolved parameters in configs
+        $container->addCompilerPass(new StoragePass(), PassConfig::TYPE_BEFORE_REMOVING);
+        $container->addCompilerPass(new UserProviderPass(), PassConfig::TYPE_BEFORE_REMOVING);
     }
 
 }

@@ -42,6 +42,7 @@ class OAuth2ServerExtension extends Extension
         $container->setParameter('o_auth2_server.www_realm', $config['www_realm']);
         $container->setParameter('o_auth2_server.grant_types', $config['grant_types']);
         $container->setParameter('o_auth2_server.storage', $config['storage']);
+        $container->setParameter('o_auth2_server.user_provider', $config['user_provider']);
 
         foreach ($config['classes'] as $key => $class) {
             $container->setParameter("o_auth2_server.classes.$key", $class);
