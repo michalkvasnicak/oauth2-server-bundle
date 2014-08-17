@@ -28,8 +28,12 @@ class UserProviderPass implements CompilerPassInterface
     {
         $serviceName = $container->getParameter('o_auth2_server.user_provider');
 
+        if ($container->hasAlias($serviceName)) {
+            $serviceName = (string) $container->getAlias($serviceName); // to service id
+        }
+
         if (!$container->hasDefinition($serviceName)) {
-            throw new InvalidConfigurationException("Service '$serviceName' does not exist.");
+            throw new InvalidConfigurationException("Service or alias '$serviceName' does not exist.");
         }
 
         $service = $container->getDefinition($serviceName);
@@ -40,7 +44,7 @@ class UserProviderPass implements CompilerPassInterface
             );
         }
 
-        $container->setAlias('auth2_server.user_provider', $serviceName);
+        $container->setAlias('o_auth2_server.user_provider', $serviceName);
     }
 }
  

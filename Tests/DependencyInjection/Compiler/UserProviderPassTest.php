@@ -6,6 +6,7 @@ use MichalKvasnicak\Bundle\OAuth2ServerBundle\DependencyInjection\Compiler\UserP
 use MichalKvasnicak\Bundle\OAuth2ServerBundle\Tests\BaseTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use \Mockery as m;
+use Symfony\Component\DependencyInjection\Definition;
 
 /**
  * @author Michal Kvasničák <michal.kvasnicak@mink.sk>
@@ -24,13 +25,10 @@ class UserProviderPassTest extends BaseTestCase
         $container = new ContainerBuilder();
 
         // valid service definition
-        $validServiceMock = m::mock('Symfony\\Component\\DependencyInjection\\Definition');
-        $validServiceMock
-            ->shouldReceive('getClass')
-            ->andReturn('Symfony\\Component\\Security\\Core\\User\\InMemoryUserProvider');
+        $service = new Definition('Symfony\\Component\\Security\\Core\\User\\InMemoryUserProvider');
 
         $container->setParameter('o_auth2_server.user_provider', 'name_of_service');
-        $container->setDefinition('name_of_service', $validServiceMock);
+        $container->setDefinition('name_of_service', $service);
 
         $compiler->process($container);
 
@@ -43,7 +41,7 @@ class UserProviderPassTest extends BaseTestCase
             },
             'Symfony\\Component\\Config\\Definition\\Exception\\InvalidConfigurationException',
             null,
-            "Service 'pompom' does not exist."
+            "Service or alias 'pompom' does not exist."
         );
 
         // invalid service
