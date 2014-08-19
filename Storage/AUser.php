@@ -6,6 +6,7 @@ use OAuth2\Storage\IClient;
 use OAuth2\Storage\IScope;
 use OAuth2\Storage\IUser;
 use Symfony\Component\Security\Core\Role\RoleInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @author Michal Kvasničák <michal.kvasnicak@mink.sk>
@@ -15,7 +16,7 @@ use Symfony\Component\Security\Core\Role\RoleInterface;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-abstract class AUser implements IUser
+abstract class AUser implements IUser, UserInterface
 {
 
     /**
