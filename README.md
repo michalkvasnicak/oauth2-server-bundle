@@ -61,7 +61,7 @@ security:
 
     providers:
         o_auth2_provider:
-            id: oauth2
+            id: o_auth2_server.user_provider
 
     encoders:
         OAuth2\Storage\IUser:
