@@ -1,3 +1,3 @@
 o_auth2_server_token_endpoint:
-    path:     /auth/token
-    defaults: { _controller: o_auth2_server.controller.token_controller:tokenAction }
+  path: /auth/v2/token
+  defaults: { _controller: o_auth2_server.controller.token_controller:tokenAction }
