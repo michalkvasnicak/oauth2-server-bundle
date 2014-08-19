@@ -20,24 +20,24 @@ class OAuth2Factory implements SecurityFactoryInterface
 
     public function create(ContainerBuilder $container, $id, $config, $userProvider, $defaultEntryPoint)
     {
-        $providerId = 'security.authenticator.provider.oauth2_server.' . $id;
+        $providerId = 'security.authenticator.provider.o_auth2_server.' . $id;
 
         $container
             ->setDefinition(
                 $providerId,
                 new DefinitionDecorator(
-                    'oauth2_server.authentication.provider'
+                    'o_auth2_server.authentication.provider'
                 )
             );
 
-        $listenerId = 'security.authentication.listener.oauth2_server' . $id;
+        $listenerId = 'security.authentication.listener.o_auth2_server' . $id;
         $container
             ->setDefinition(
                 $listenerId,
-                new DefinitionDecorator('oauth2_server.authentication.listener')
+                new DefinitionDecorator('o_auth2_server.authentication.listener')
             );
 
-        return [$providerId, $listenerId, 'oauth2_server.authentication.entry_point'];
+        return [$providerId, $listenerId, 'o_auth2_server.authentication.entry_point'];
     }
 
     public function getPosition()
