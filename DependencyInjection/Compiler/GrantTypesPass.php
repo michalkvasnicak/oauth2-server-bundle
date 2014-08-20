@@ -51,6 +51,8 @@ class GrantTypesPass implements CompilerPassInterface
             $grantTypeCompilerPass->process($container);
 
             $registeredGrantTypes++;
+
+            $grantTypeResolver->addMethodCall('accept', [new Reference("o_auth2_server.grant_type.$grantTypeName")]);
         }
 
         foreach ($taggedServices as $serviceName => $tags) {
