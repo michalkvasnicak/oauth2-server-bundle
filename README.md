@@ -52,6 +52,7 @@ oauth2_server:
 ```
 
 ### Tell the Security bundle to use this bundle
+
 ```yaml
 security:
     firewalls:
@@ -68,6 +69,15 @@ security:
             algorithm: sha512
             encode_as_base64: true
             iterations: 512
+```
+
+### Register routes
+
+In `routing.yml` of your application register bundle.
+
+```yaml
+o_auth2_server:
+    resource: "@OAuth2ServerBundle/Resources/config/routing.yml"
 ```
 
 ### Storage
@@ -125,7 +135,7 @@ oauth2_server:
 
 ### Own grant types
 
-You can use your own grant types too, just create services and tag them as 'oauth2_server.grant_type'. All services has to implement OAuth2\GrantType\IGrantType.
+You can use your own grant types too, just create services and tag them as `oauth2_server.grant_type`. All services has to implement `OAuth2\GrantType\IGrantType`.
 
 ```yaml
 my_custom_grant_type:
