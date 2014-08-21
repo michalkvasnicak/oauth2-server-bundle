@@ -104,6 +104,17 @@ abstract class AUser implements IUser, UserInterface
     }
 
     /**
+     * Gets user assigned scopes (roles)
+     *
+     * @return array|AScope[]|\OAuth2\Storage\IScope[]|\Symfony\Component\Security\Core\Role\RoleInterface[]
+     */
+    public function getScopes()
+    {
+        return $this->getRoles();
+    }
+
+
+    /**
      * Adds scope to user (what user can and can not do)
      *
      * @param AScope $scope
