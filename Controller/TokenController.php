@@ -9,6 +9,7 @@ use OAuth2\Exception\InvalidHttpMethodException;
 use OAuth2\Exception\InvalidRequestException;
 use OAuth2\Exception\InvalidScopeException;
 use OAuth2\Exception\MissingParameterException;
+use OAuth2\Exception\InvalidUserCredentialsException;
 use OAuth2\Exception\OAuth2Exception;
 use OAuth2\Exception\UnauthorizedClientException;
 use OAuth2\Exception\UnsupportedGrantTypeException;
@@ -129,6 +130,9 @@ class TokenController extends Controller
             } else if ($e instanceof InvalidGrantException) {
                 $error = 'invalid_grant';
                 $statusCode = JsonResponse::HTTP_FORBIDDEN;
+            } else if ($e instanceof InvalidUserCredentialsException) {
+                $error = 'invalid_grant';
+                $statusCode = JsonResponse::HTTP_UNAUTHORIZED;
             }
 
             return $this->createErrorResponse($error, $e->getMessage(), $statusCode);
