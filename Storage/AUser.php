@@ -83,6 +83,26 @@ abstract class AUser implements IUser, UserInterface
     }
 
     /**
+     * Gets user creation date
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Gets date and time of last user change
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
      * Returns the roles granted to the user.
      *
      * <code>
@@ -218,6 +238,7 @@ abstract class AUser implements IUser, UserInterface
     public function eraseCredentials()
     {
         $this->setPassword(null);
+        $this->setSalt(null);
     }
 
     /**
