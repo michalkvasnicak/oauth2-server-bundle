@@ -154,7 +154,7 @@ services:
     class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Transformer\RequestTransformer
 
   # TOKEN TYPE
-  o_auth2_server.token_type:
+  #o_auth2_server.token_type:
   #  class:
   #
   # is created using token type compiler pass

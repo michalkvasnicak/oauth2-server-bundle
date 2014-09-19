@@ -5,6 +5,7 @@ namespace MichalKvasnicak\Bundle\OAuth2ServerBundle\DependencyInjection\Compiler
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 
 /**
  * @author Michal Kvasničák <michal.kvasnicak@mink.sk>
@@ -40,8 +41,8 @@ class TokenTypePass implements CompilerPassInterface
             );
         }
 
-        $serviceDefinition = $container->getDefinition('o_auth2_server.token_type');
-        $serviceDefinition->setClass($tokenClass);
+        $serviceDefinition = new Definition($tokenClass);
+        $container->setDefinition('o_auth2_server.token_type', $serviceDefinition);
     }
 }
  
