@@ -237,8 +237,7 @@ abstract class AUser implements IUser, UserInterface
      */
     public function eraseCredentials()
     {
-        $this->setPassword(null);
-        $this->setSalt(null);
+        // do nothing
     }
 
     /**
