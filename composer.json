@@ -8,15 +8,15 @@
     "authors": [
         {
             "name": "Michal Kvasnicak",
-            "email": "michal.kvasnicak@mink.sk",
+            "email": "michal.kvasnicak@gmail.com",
             "homepage": "http://kvasnicak.info"
         }
     ],
     "require": {
         "php": ">=5.4",
-        "michalkvasnicak/oauth2-server": "~1.0",
-        "symfony/framework-bundle": "~2.2",
-        "symfony/security-bundle": "~2.2"
+        "michalkvasnicak/oauth2-server": "^1.0.0-beta2",
+        "symfony/framework-bundle": "~2.2 | ~3.0",
+        "symfony/security-bundle": "~2.2 | ~3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
@@ -32,5 +32,5 @@
             "MichalKvasnicak\\Bundle\\OAuth2ServerBundle\\": ""
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }

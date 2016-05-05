@@ -19,110 +19,110 @@ services:
   o_auth2_server.authenticator.user:
     class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Security\UserAuthenticator
     arguments:
-      - @security.encoder_factory
-      - @o_auth2_server.user_provider # user provider is created using compiler pass
+      - "@security.encoder_factory"
+      - "@o_auth2_server.user_provider" # user provider is created using compiler pass
 
 
   # AUTHENTICATION SERVICES
   o_auth2_server.authentication.listener:
     class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Security\Firewall\OAuth2Listener
     arguments:
-      - @o_auth2_server.resolver.token_type
-      - @o_auth2_server.service.request_transformer
-      - @security.context
-      - @security.authentication.manager
-      - @o_auth2_server.authentication.entry_point
+      - "@o_auth2_server.resolver.token_type"
+      - "@o_auth2_server.service.request_transformer"
+      - "@security.context"
+      - "@security.authentication.manager"
+      - "@o_auth2_server.authentication.entry_point"
 
 
   o_auth2_server.authentication.provider:
     class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Security\Authentication\Provider\OAuth2Provider
     arguments:
-      - @o_auth2_server.service.authenticator
+      - "@o_auth2_server.service.authenticator"
 
 
   o_auth2_server.authentication.entry_point:
     class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Security\EntryPoint\OAuth2EntryPoint
     arguments:
-      - @o_auth2_server.token_type
-      - %o_auth2_server.www_realm%
+      - "@o_auth2_server.token_type"
+      - "%o_auth2_server.www_realm%"
 
 
   # CLIENT AUTHENTICATION METHODS
   o_auth2_server.client_authentication_method.http_basic:
     class: OAuth2\Security\ClientAuthenticationMethod\HttpBasic
     arguments:
-      - @o_auth2_server.storage.client
+      - "@o_auth2_server.storage.client"
 
   o_auth2_server.client_authentication_method.request_body:
     class: OAuth2\Security\ClientAuthenticationMethod\RequestBody
     arguments:
-      - @o_auth2_server.storage.client
+      - "@o_auth2_server.storage.client"
 
   # CONTROLLERS
   o_auth2_server.controller.token_controller:
     class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Controller\TokenController
     arguments:
-      - @o_auth2_server.service.request_transformer
-      - @o_auth2_server.issuer.access_token
-      - @o_auth2_server.issuer.refresh_token
-      - @o_auth2_server.token_type
-      - %o_auth2_server.refresh_tokens.generate%
+      - "@o_auth2_server.service.request_transformer"
+      - "@o_auth2_server.issuer.access_token"
+      - "@o_auth2_server.issuer.refresh_token"
+      - "@o_auth2_server.token_type"
+      - "%o_auth2_server.refresh_tokens.generate%"
 
 
   # GRANT TYPES (DEFAULT)
   o_auth2_server.grant_type.authorization_code:
     class: OAuth2\GrantType\AuthorizationCode
     arguments:
-      - @o_auth2_server.authenticator.client
-      - @o_auth2_server.storage.client
-      - @o_auth2_server.storage.authorization_code
-      - @o_auth2_server.storage.access_token
-      - @o_auth2_server.resolver.scope
+      - "@o_auth2_server.authenticator.client"
+      - "@o_auth2_server.storage.client"
+      - "@o_auth2_server.storage.authorization_code"
+      - "@o_auth2_server.storage.access_token"
+      - "@o_auth2_server.resolver.scope"
 
 
   o_auth2_server.grant_type.client_credentials:
     class: OAuth2\GrantType\ClientCredentials
     arguments:
-      - @o_auth2_server.authenticator.client
-      - @o_auth2_server.storage.access_token
-      - @o_auth2_server.resolver.scope
+      - "@o_auth2_server.authenticator.client"
+      - "@o_auth2_server.storage.access_token"
+      - "@o_auth2_server.resolver.scope"
 
   o_auth2_server.grant_type.resource_owner_password_credentials:
     class: OAuth2\GrantType\ResourceOwnerPasswordCredentials
     arguments:
-      - @o_auth2_server.authenticator.client
-      - @o_auth2_server.authenticator.user
-      - @o_auth2_server.storage.access_token
-      - @o_auth2_server.resolver.scope
+      - "@o_auth2_server.authenticator.client"
+      - "@o_auth2_server.authenticator.user"
+      - "@o_auth2_server.storage.access_token"
+      - "@o_auth2_server.resolver.scope"
 
   o_auth2_server.grant_type.refresh_token:
     class: OAuth2\GrantType\RefreshToken
     arguments:
-      - @o_auth2_server.authenticator.client
-      - @o_auth2_server.storage.refresh_token
-      - @o_auth2_server.storage.access_token
-      - @o_auth2_server.resolver.scope
+      - "@o_auth2_server.authenticator.client"
+      - "@o_auth2_server.storage.refresh_token"
+      - "@o_auth2_server.storage.access_token"
+      - "@o_auth2_server.resolver.scope"
 
   o_auth2_server.grant_type.implicit:
     class: OAuth2\GrantType\Implicit
     arguments:
-      - @o_auth2_server.storage.client
-      - @o_auth2_server.storage.access_token
-      - @o_auth2_server.resolver.scope
-      - @o_auth2_server.token_type
+      - "@o_auth2_server.storage.client"
+      - "@o_auth2_server.storage.access_token"
+      - "@o_auth2_server.resolver.scope"
+      - "@o_auth2_server.token_type"
 
 
   # TOKEN ISSUERS
   o_auth2_server.issuer.access_token:
     class: OAuth2\TokenIssuer\AccessTokenIssuer
     arguments:
-      - @o_auth2_server.resolver.grant_type
+      - "@o_auth2_server.resolver.grant_type"
 
   o_auth2_server.issuer.refresh_token:
     class: OAuth2\TokenIssuer\RefreshTokenIssuer
     arguments:
-      - @o_auth2_server.storage.refresh_token
-      - %o_auth2_server.refresh_tokens.lifetime%
+      - "@o_auth2_server.storage.refresh_token"
+      - "%o_auth2_server.refresh_tokens.lifetime%"
 
 
   # RESOLVERS
@@ -142,13 +142,13 @@ services:
   o_auth2_server.service.authenticator:
     class: OAuth2\Security\Authenticator
     arguments:
-      - @o_auth2_server.resolver.token_type
-      - @o_auth2_server.storage.access_token
+      - "@o_auth2_server.resolver.token_type"
+      - "@o_auth2_server.storage.access_token"
 
   o_auth2_server.service.authorizator:
     class: OAuth2\Security\Authorizator
     arguments:
-      - @o_auth2_server.resolver.grant_type
+      - "@o_auth2_server.resolver.grant_type"
 
   o_auth2_server.service.request_transformer:
     class: MichalKvasnicak\Bundle\OAuth2ServerBundle\Transformer\RequestTransformer
