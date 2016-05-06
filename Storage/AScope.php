@@ -64,8 +64,13 @@ abstract class AScope implements IScope, RoleInterface
      */
     public function getRole()
     {
-        return 'ROLE_' . $this->getId();
+        $id = $this->getId();
+
+        if (strpos($id, 'ROLE_') === 0) {
+            return strtoupper($id);
+        }
+
+        return strtoupper('ROLE_' . $this->getId());
     }
 
 }
- 
