@@ -8,6 +8,7 @@ use OAuth2\Exception\UnsupportedTokenTypeException;
 use OAuth2\Resolver\ITokenTypeResolver;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
@@ -36,9 +37,9 @@ class OAuth2Listener implements ListenerInterface
     private $requestTransformer;
 
     /**
-     * @var SecurityContextInterface
+     * @var TokenStorageInterface
      */
-    private $securityContext;
+    private $tokenStorage;
 
     /**
      * @var AuthenticationManagerInterface
@@ -54,14 +55,14 @@ class OAuth2Listener implements ListenerInterface
     public function __construct(
         ITokenTypeResolver $tokenTypeResolver,
         RequestTransformer $requestTransformer,
-        SecurityContextInterface $securityContext,
+        TokenStorageInterface $tokenStorage,
         AuthenticationManagerInterface $authenticationManager,
         AuthenticationEntryPointInterface $authenticationEntryPoint
     )
     {
         $this->tokenTypeResolver = $tokenTypeResolver;
         $this->requestTransformer = $requestTransformer;
-        $this->securityContext = $securityContext;
+        $this->tokenStorage = $tokenStorage;
         $this->authenticationManager = $authenticationManager;
         $this->authenticationEntryPoint = $authenticationEntryPoint;
     }
@@ -89,7 +90,7 @@ class OAuth2Listener implements ListenerInterface
 
         try {
             $authToken = $this->authenticationManager->authenticate($token);
-            $this->securityContext->setToken($authToken);
+            $this->tokenStorage->setToken($authToken);
             return;
         } catch (AuthenticationException $e) {
             $event->setResponse(
@@ -100,4 +101,3 @@ class OAuth2Listener implements ListenerInterface
         }
     }
 }
- 
