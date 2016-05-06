@@ -29,7 +29,7 @@ services:
     arguments:
       - "@o_auth2_server.resolver.token_type"
       - "@o_auth2_server.service.request_transformer"
-      - "@security.context"
+      - "@security.token_storage"
       - "@security.authentication.manager"
       - "@o_auth2_server.authentication.entry_point"
 

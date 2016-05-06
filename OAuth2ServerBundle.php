@@ -31,12 +31,13 @@ class OAuth2ServerBundle extends Bundle
         $extension = $container->getExtension('security');
         $extension->addSecurityListenerFactory(new OAuth2Factory());
 
-        $container->addCompilerPass(new GrantTypesPass());
+
         $container->addCompilerPass(new TokenTypePass());
 
         // those two are moved to later phase because in before optimization there aren't resolved parameters in configs
         $container->addCompilerPass(new StoragePass(), PassConfig::TYPE_BEFORE_REMOVING);
         $container->addCompilerPass(new UserProviderPass(), PassConfig::TYPE_BEFORE_REMOVING);
+        $container->addCompilerPass(new GrantTypesPass(), PassConfig::TYPE_BEFORE_REMOVING);
     }
 
 }
