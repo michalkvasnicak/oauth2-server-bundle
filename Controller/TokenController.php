@@ -90,10 +90,16 @@ class TokenController extends Controller
                 }
             }
 
+            $expiresAt = $accessToken->getExpiresAt();
+
+            if ($expiresAt instanceof \DateTime) {
+                $expiresAt = $expiresAt->getTimestamp();
+            }
+
             $data = [
                 'access_token' => $accessToken->getId(),
-                'expires_at' => $accessToken->getExpiresAt(),
-                'expires_in' => $accessToken->getExpiresAt() - time(),
+                'expires_at' => $expiresAt,
+                'expires_in' => $expiresAt - time(),
                 'scope' => join(' ', $scopes),
                 'token_type' => $this->tokenType->getName()
             ];
@@ -166,4 +172,3 @@ class TokenController extends Controller
     }
 
 }
- 
