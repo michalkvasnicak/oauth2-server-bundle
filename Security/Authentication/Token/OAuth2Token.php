@@ -27,10 +27,12 @@ class OAuth2Token extends AbstractToken
     public function __construct(Session $session = null)
     {
         if ($session) {
-            parent::__construct($session->getUser()->getRoles()->toArray());
+            parent::__construct($session->getAccessToken()->getScopes()->toArray());
             $this->session = $session;
             $this->setAuthenticated(true);
             $this->setUser($session->getUser());
+        } else {
+            parent::__construct();
         }
     }
 
@@ -78,4 +80,3 @@ class OAuth2Token extends AbstractToken
         // TODO: Implement getCredentials() method.
     }
 }
- 
