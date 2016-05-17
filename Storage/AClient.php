@@ -219,7 +219,7 @@ abstract class AClient implements IClient
     {
         if ($grantType instanceof IGrantType) {
             $this->grantTypes[] = get_class($grantType);
-        } else if (is_string($grantType) && class_exists($grantType)) {
+        } else if (is_string($grantType) && class_exists($grantType) && is_subclass_of($grantType, 'OAuth2\\GrantType\\IGrantType')) {
             $this->grantTypes[] = $grantType;
         } else {
             throw new \InvalidArgumentException(
@@ -229,4 +229,3 @@ abstract class AClient implements IClient
     }
 
 }
- 
