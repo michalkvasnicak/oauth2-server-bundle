@@ -141,7 +141,7 @@ You can use your own grant types too, just create services and tag them as `oaut
 my_custom_grant_type:
     class: My\Own\GrantType
     tags:
-        - { name: oauth2_server.grant_type }
+        - { name: o_auth2_server.grant_type }
 ```
 
 ## TODO:
