@@ -39,6 +39,21 @@ class UserAuthenticator implements IUserAuthenticator
         $this->userProvider = $userProvider;
     }
 
+    /**
+     * @return EncoderFactoryInterface
+     */
+    public function getEncoderFactory()
+    {
+        return $this->encoderFactory;
+    }
+
+    /**
+     * @return UserProviderInterface
+     */
+    public function getUserProvider()
+    {
+        return $this->userProvider;
+    }
 
     /**
      * Authenticates user and returns
@@ -70,4 +85,3 @@ class UserAuthenticator implements IUserAuthenticator
     }
 
 }
- 
